@@ -1,2 +1,2 @@
-# lockoncrm_customers
-Accounts and Contacts for Lock-On CRM
+# Accounts and Contacts Service for Lock-On CRM
+Team Flash - Kevin Lai
