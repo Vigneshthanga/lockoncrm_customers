@@ -1,0 +1,73 @@
+<!-- HTML page Author: Kevin Lai -->
+{% block content %}
+<div class='content-section'>
+	<h1>Edit Contact</h1>
+	<b>{{contact.fname}} {{contact.lname}}</b>
+	<br>
+	<b>{{contact.pnumber}}</b>
+	<br>
+	<b>{{contact.email}}</b>
+	<br>	
+	<b>{{contact.street}}, {{contact.city}}, {{contact.state}}, {{contact.postal}}, {{contact.country}}</b>
+	<br>
+	<br>
+	Notes: <b>{{contact.notes}}</b>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<form method='POST' action="">
+		{{form.hidden_tag()}}
+		<div class = "form-group">
+			<table border = "1" cellpadding = "20" cellspacing = "1">
+				<tr>
+					<td><b>First Name *</b></td>
+					<td>{{ form.first_name(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Last Name *</b></td>
+					<td>{{ form.last_name(class="form-control form-control-lg")}}</td>
+				</tr>				
+				<tr>
+					<td><b>Phone Number *</b></td>
+					<td>{{ form.phone_number(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Email Address *</b></td>
+					<td>{{ form.email_address(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Street</b></td>
+					<td>{{ form.street_address(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>City</b></td>
+					<td>{{ form.city(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>State</b></td>
+					<td>{{ form.state(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Postal</b></td>
+					<td>{{ form.postal_code(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Country</b></td>
+					<td>{{ form.country(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Notes</b></td>
+					<td>{{ form.notes(class="form-control form-control-lg")}}</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div class = "form-group">
+			{{ form.save(class="btn btn-outline-info")}}&nbsp&nbsp&nbsp&nbsp<a href="/customers/contacts/">Cancel</a>
+		</div>	
+	</form>
+	<br>
+	<h2>{{completion_msg}}</h2>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+<!-- HTML page Author: Kevin Lai -->
+{% block content %}
+<div class='content-section'>
+	<h1>Edit Account</h1>
+	<b>{{account.name}}</b>
+	<br>
+	<b>{{account.pnumber}}</b>
+	<br>
+	<b>{{account.email}}</b>
+	<br>	
+	<b>{{account.street}}, {{account.city}}, {{account.state}}, {{account.postal}}, {{account.country}}</b>
+	<br>
+	<br>
+	Notes: <b>{{account.notes}}</b>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<form method='POST' action="">
+		{{form.hidden_tag()}}
+		<div class = "form-group">
+			<table border = "1" cellpadding = "20" cellspacing = "1">
+				<tr>
+					<td><b>Name *</b></td>
+					<td>{{ form.name(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Phone Number *</b></td>
+					<td>{{ form.phone_number(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Email Address *</b></td>
+					<td>{{ form.email_address(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Street *</b></td>
+					<td>{{ form.street_address(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>City *</b></td>
+					<td>{{ form.city(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>State *</b></td>
+					<td>{{ form.state(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Postal *</b></td>
+					<td>{{ form.postal_code(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Country *</b></td>
+					<td>{{ form.country(class="form-control form-control-lg")}}</td>
+				</tr>
+				<tr>
+					<td><b>Notes</b></td>
+					<td>{{ form.notes(class="form-control form-control-lg")}}</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div class = "form-group">
+			{{ form.save(class="btn btn-outline-info")}}&nbsp&nbsp&nbsp&nbsp<a href="/customers/accounts/">Cancel</a>
+		</div>		
+	</form>
+	<br>
+	<h2>{{completion_msg}}</h2>
+</div>
+{% endblock %}

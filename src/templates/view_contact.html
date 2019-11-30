@@ -1,0 +1,30 @@
+<!-- HTML page Author: Kevin Lai -->
+{% block content %}
+<div class='content-section'>
+	<h3><a href="/customers/home/">Home</a> | <a href="/customers/accounts/">Accounts</a> | <a href="/customers/contacts/">Contacts</a></h3>	
+	<h1>Contacts</h1>
+	<h2><a href="/customers/contacts/create/">Create New Contact</a></h2>
+	<br>
+	<table border = "1" cellpadding = "20" cellspacing = "1">
+		<tr>
+			<td><b>ID</b></td>
+			<td><b>Name</b></td>
+			<td><b>Phone Number</b></td>
+			<td><b>Email</b></td>
+			<td colspan=2><b>Actions</b></td>
+		</tr>
+		{% for contact in contacts_list %}
+		<tr>
+			<td>{{contact.id}}</td>
+			<td>{{contact.fname}} {{contact.lname}}</td>
+			<td>{{contact.pnumber}}</td>
+			<td>{{contact.email}}</td>
+			<td><a href="{{url_for('edit_contact', contact_id=contact.id)}}">Edit</a></td>
+			<td><a href={{url_for('delete_contact', contact_id=contact.id)}}>Delete</a></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	{% endfor %}
+</div>
+{% endblock %}
