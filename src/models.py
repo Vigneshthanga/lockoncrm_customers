@@ -19,10 +19,12 @@ class Contact(db.Model):
 	postal = db.Column(db.Integer)	
 	country = db.Column(db.String(55))
 	notes = db.Column(db.Text)
+	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
-	def __init__(self,fname,lname,pnumber,email,street="",city="",state="",postal="",country="",notes=""):
+	def __init__(self,fname,lname,account_id,pnumber,email,street="",city="",state="",postal="",country="",notes=""):
 		self.fname = fname
 		self.lname = lname
+		self.account_id = account_id
 		self.pnumber = pnumber
 		self.email = email
 		self.street = street
@@ -44,7 +46,7 @@ class Account(db.Model):
 	postal = db.Column(db.Integer,nullable=False)	
 	country = db.Column(db.String(55),nullable=False)
 	notes = db.Column(db.Text)
-	#contacts = db.relationship('Contact', backref="account", lazy=True)
+	contacts = db.relationship('Contact', backref="account", lazy=True)
 	
 	def __init__(self, name, pnumber, email, street, city, state, postal, country, notes=""):
 		self.name = name

@@ -43,6 +43,7 @@ def create_contact():
 	if form.validate_on_submit():
 		if form.save.data:
 			new_contact = Contact(fname = form.first_name.data, lname = form.last_name.data,
+								  account_id = form.account_id.data,				
 								  pnumber = form.phone_number.data, email = form.email_address.data,
 								  street = form.street_address.data, city = form.city.data,
 								  state = form.state.data, postal = form.postal_code.data,
@@ -69,6 +70,7 @@ def edit_contact(contact_id):
 		if form.save.data:
 			contact.fname = form.first_name.data
 			contact.lname = form.last_name.data
+			contact.account_id = form.account_id.data
 			contact.pnumber = form.phone_number.data
 			contact.email = form.email_address.data
 			contact.street = form.street_address.data
@@ -124,6 +126,10 @@ def create_account():
 			completion_msg = "Failed to create account. Please try again."
 	return render_template("create_account.html", form = form, completion_msg = completion_msg)
 
+@app.route("/customers/accounts/<int:account_id>/view_account_contacts/", methods=['GET','POST'])
+def view_account_contacts(account_id):
+	account = Account.query.get_or_404(account_id)
+	return render_template("view_account_contacts.html", contacts_list = account.contacts)	
 
 @app.route("/customers/accounts/<int:account_id>/edit/", methods=['GET','POST'])
 def edit_account(account_id):

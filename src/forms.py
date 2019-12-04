@@ -12,6 +12,7 @@ class ContactForm(FlaskForm):
 							  validators=[InputRequired(), Length(min = 1, max = 50)])
 	last_name = StringField('last_name',
 							  validators=[InputRequired(), Length(min = 1, max = 50)])
+	account_id = IntegerField('account_id', validators=[InputRequired()])
 	phone_number = IntegerField('phone_number', validators=[InputRequired()])
 	email_address = StringField('email_address',
 							  validators=[InputRequired(), Email(message='INVALID_EMAIL_ADDRESS'), Length(min = 1, max = 256)])

@@ -1,15 +1,12 @@
 <!-- HTML page Author: Kevin Lai -->
 {% block content %}
 <div class='content-section'>
-	<h3><a href="/customers/home/">Home</a> | <a href="/customers/accounts/">Accounts</a> | <a href="/customers/contacts/">Contacts</a></h3>	
-	<h1>Contacts</h1>
-	<h2><a href="/customers/contacts/create/">Create New Contact</a></h2>
-	<br>
+	<h3><a href="/customers/accounts">Back to Accounts List</a></h3>	
+	<h1>Contacts Associated with the Account</h1>
 	<table border = "1" cellpadding = "20" cellspacing = "1">
 		<tr>
 			<td><b>ID</b></td>
 			<td><b>Name</b></td>
-			<td><b>Assign To Account ID</b></td>
 			<td><b>Phone Number</b></td>
 			<td><b>Email</b></td>
 			<td colspan=2><b>Actions</b></td>
@@ -18,7 +15,6 @@
 		<tr>
 			<td>{{contact.id}}</td>
 			<td>{{contact.fname}} {{contact.lname}}</td>
-			<td>{{contact.account_id}}</td>
 			<td>{{contact.pnumber}}</td>
 			<td>{{contact.email}}</td>
 			<td><a href="{{url_for('edit_contact', contact_id=contact.id)}}">Edit</a></td>

@@ -4,6 +4,8 @@
 	<h1>Edit Contact</h1>
 	<b>{{contact.fname}} {{contact.lname}}</b>
 	<br>
+	<b>{{contact.account_id}}</b>
+	<br>
 	<b>{{contact.pnumber}}</b>
 	<br>
 	<b>{{contact.email}}</b>
@@ -27,7 +29,11 @@
 				<tr>
 					<td><b>Last Name *</b></td>
 					<td>{{ form.last_name(class="form-control form-control-lg")}}</td>
-				</tr>				
+				</tr>
+				<tr>
+					<td><b>Assigned To Account ID *</b></td>
+					<td>{{ form.account_id(class="form-control form-control-lg")}}</td>	
+				</tr>							
 				<tr>
 					<td><b>Phone Number *</b></td>
 					<td>{{ form.phone_number(class="form-control form-control-lg")}}</td>
