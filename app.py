@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://customers:[db_password]@0.0.0.0:[db_port_number]/customers"
+app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://customers:commonsyspass@192.168.33.15:3306/customers"
 
 # Only for testing on localhost
 #app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://customers:kevin123@localhost:5432/customers"
