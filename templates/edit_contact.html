@@ -2,21 +2,6 @@
 {% block content %}
 <div class='content-section'>
 	<h1>Edit Contact</h1>
-	<b>{{contact.fname}} {{contact.lname}}</b>
-	<br>
-	<b>{{contact.account_id}}</b>
-	<br>
-	<b>{{contact.pnumber}}</b>
-	<br>
-	<b>{{contact.email}}</b>
-	<br>	
-	<b>{{contact.street}}, {{contact.city}}, {{contact.state}}, {{contact.postal}}, {{contact.country}}</b>
-	<br>
-	<br>
-	Notes: <b>{{contact.notes}}</b>
-	<br>
-	<br>
-	<hr>
 	<br>
 	<form method='POST' action="">
 		{{form.hidden_tag()}}
@@ -24,11 +9,11 @@
 			<table border = "1" cellpadding = "20" cellspacing = "1">
 				<tr>
 					<td><b>First Name *</b></td>
-					<td>{{ form.first_name(class="form-control form-control-lg")}}</td>
+					<td>{{ form.fname(class="form-control form-control-lg")}}</td>
 				</tr>
 				<tr>
 					<td><b>Last Name *</b></td>
-					<td>{{ form.last_name(class="form-control form-control-lg")}}</td>
+					<td>{{ form.lname(class="form-control form-control-lg")}}</td>
 				</tr>
 				<tr>
 					<td><b>Assigned To Account ID *</b></td>
@@ -36,15 +21,15 @@
 				</tr>							
 				<tr>
 					<td><b>Phone Number *</b></td>
-					<td>{{ form.phone_number(class="form-control form-control-lg")}}</td>
+					<td>{{ form.pnumber(class="form-control form-control-lg")}}</td>
 				</tr>
 				<tr>
 					<td><b>Email Address *</b></td>
-					<td>{{ form.email_address(class="form-control form-control-lg")}}</td>
+					<td>{{ form.email(class="form-control form-control-lg")}}</td>
 				</tr>
 				<tr>
 					<td><b>Street</b></td>
-					<td>{{ form.street_address(class="form-control form-control-lg")}}</td>
+					<td>{{ form.street(class="form-control form-control-lg")}}</td>
 				</tr>
 				<tr>
 					<td><b>City</b></td>
@@ -56,7 +41,7 @@
 				</tr>
 				<tr>
 					<td><b>Postal</b></td>
-					<td>{{ form.postal_code(class="form-control form-control-lg")}}</td>
+					<td>{{ form.postal(class="form-control form-control-lg")}}</td>
 				</tr>
 				<tr>
 					<td><b>Country</b></td>

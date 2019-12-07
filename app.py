@@ -13,6 +13,9 @@ import os
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
+#app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://customers:[db_password]@0.0.0.0:[db_port_number]/customers"
+
+# Production MySQL DB - Use This!!!
 app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://customers:commonsyspass@192.168.33.15:3306/customers"
 
 # Only for testing on localhost
@@ -42,11 +45,11 @@ def create_contact():
 	completion_msg = ""
 	if form.validate_on_submit():
 		if form.save.data:
-			new_contact = Contact(fname = form.first_name.data, lname = form.last_name.data,
+			new_contact = Contact(fname = form.fname.data, lname = form.lname.data,
 								  account_id = form.account_id.data,				
-								  pnumber = form.phone_number.data, email = form.email_address.data,
-								  street = form.street_address.data, city = form.city.data,
-								  state = form.state.data, postal = form.postal_code.data,
+								  pnumber = form.pnumber.data, email = form.email.data,
+								  street = form.street.data, city = form.city.data,
+								  state = form.state.data, postal = form.postal.data,
 								  country = form.country.data, notes = form.notes.data)
 			db.session.add(new_contact)
 			try:
@@ -64,19 +67,19 @@ def create_contact():
 @app.route("/customers/contacts/<int:contact_id>/edit/", methods=['GET','POST'])
 def edit_contact(contact_id):
 	contact = Contact.query.get_or_404(contact_id)
-	form = ContactForm()
+	form = ContactForm(obj=contact)
 	completion_msg = ""
 	if form.validate_on_submit():
 		if form.save.data:
-			contact.fname = form.first_name.data
-			contact.lname = form.last_name.data
+			contact.fname = form.fname.data
+			contact.lname = form.lname.data
 			contact.account_id = form.account_id.data
-			contact.pnumber = form.phone_number.data
-			contact.email = form.email_address.data
-			contact.street = form.street_address.data
+			contact.pnumber = form.pnumber.data
+			contact.email = form.email.data
+			contact.street = form.street.data
 			contact.city = form.city.data
 			contact.state = form.state.data
-			contact.postal = form.postal_code.data
+			contact.postal = form.postal.data
 			contact.country = form.country.data
 			contact.notes = form.notes.data
 			try:
@@ -88,7 +91,7 @@ def edit_contact(contact_id):
 				return redirect(url_for('view_contact'))
 		else:			
 			completion_msg = "Failed to create contact. Please try again."
-	return render_template("edit_contact.html", form = form, completion_msg = completion_msg, contact = contact)
+	return render_template("edit_contact.html", form = form, completion_msg = completion_msg)
 
 @app.route("/customers/contacts/<int:contact_id>/delete/", methods=['GET','POST'])
 def delete_contact(contact_id):
@@ -109,10 +112,10 @@ def create_account():
 	completion_msg = ""
 	if form.validate_on_submit():
 		if form.save.data:
-			new_account = Account(name = form.name.data, pnumber = form.phone_number.data,
-								  email = form.email_address.data, street = form.street_address.data,
+			new_account = Account(name = form.name.data, pnumber = form.pnumber.data,
+								  email = form.email.data, street = form.street.data,
 								  city = form.city.data, state = form.state.data,
-								  postal = form.postal_code.data, country = form.country.data,
+								  postal = form.postal.data, country = form.country.data,
 								  notes = form.notes.data)
 			db.session.add(new_account)
 			try:
@@ -134,19 +137,19 @@ def view_account_contacts(account_id):
 @app.route("/customers/accounts/<int:account_id>/edit/", methods=['GET','POST'])
 def edit_account(account_id):
 	account = Account.query.get_or_404(account_id)
-	form = AccountForm()
+	form = AccountForm(obj=account)
 	completion_msg = ""
 	if form.validate_on_submit():
 		if form.save.data:
 			account.name = form.name.data
-			account.pnumber = form.phone_number.data
-			account.email = form.email_address.data
-			account.street = form.street_address.data
-			city = form.city.data
-			state = form.state.data
-			postal = form.postal_code.data
-			country = form.country.data
-			notes = form.notes.data
+			account.pnumber = form.pnumber.data
+			account.email = form.email.data
+			account.street = form.street.data		
+			account.city = form.city.data
+			account.state = form.state.data
+			account.postal = form.postal.data
+			account.country = form.country.data
+			account.notes = form.notes.data
 			try:
 				db.session.commit()
 			except:
@@ -156,7 +159,7 @@ def edit_account(account_id):
 				return redirect(url_for('view_account'))			
 		else:			
 			completion_msg = "Failed to update account. Please try again."
-	return render_template("edit_account.html", form = form, completion_msg = completion_msg, account = account)
+	return render_template("edit_account.html", form = form, completion_msg = completion_msg)
 
 @app.route("/customers/accounts/<int:account_id>/delete/", methods=['GET','POST'])
 def delete_account(account_id):
