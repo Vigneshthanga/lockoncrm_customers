@@ -140,7 +140,7 @@ def edit_account(account_id):
 		if form.save.data:
 			account.name = form.name.data
 			account.pnumber = form.phone_number.data
-			account.email = form.email.data
+			account.email = form.email_address.data
 			account.street = form.street_address.data
 			city = form.city.data
 			state = form.state.data
